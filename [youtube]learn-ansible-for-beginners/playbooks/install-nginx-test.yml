@@ -1,0 +1,17 @@
+--- #Optional YAML start syntax
+- hosts: test-servers
+  become: true
+  # vars:
+  #   ansible_become_pass: 
+  tasks:
+    - name: install nginx
+      package: pkg=nginx state=latest
+      notify:
+        - start nginx
+  
+  handlers: 
+    - name: start nginx
+      service: name=nginx state=started
+
+  
+... #Optional YAML end syntax

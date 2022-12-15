@@ -1,0 +1,11 @@
+---
+- name: copy
+  hosts: test-servers
+  become: true
+  become_user: root
+  gather_facts: true
+  tasks:
+    - name: "copy file"
+      copy: 
+        src: /Users/jeongseup/Study/ansible-study/[youtube]learn-ansible-for-beginners/testfile 
+        dest: /var/www/html/index.html

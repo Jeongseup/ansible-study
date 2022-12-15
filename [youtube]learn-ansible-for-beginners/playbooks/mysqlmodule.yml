@@ -1,0 +1,28 @@
+--- 
+- hosts: test-servers
+  remote_user: root
+  become: true
+
+  tasks:
+    - name: "Install python"
+      apt: name=python3-apt state=present
+
+    - name: "Install pip"
+      apt: name=python3-pip state=present
+  
+    - name: "Install libmysqlclient-dev"
+      apt: name=libmysqlclient-dev state=present
+
+    # - name: "Install the Python MYSQL module"
+    #   pip: name=MySQL-python
+  
+    - name: "Create database user jeongseup"
+      mysql_user: user=jeongseup password=1234 priv=*.*:ALL state=present
+
+    - name: "Create database edu"
+      mysql_db: db=edu state=present
+
+    - name: "Create a Table tag"
+      command: mysql -u jeongseup -e 'CREATE TABLE reg (name varchar(30), email varchar(30));' edu
+  
+  

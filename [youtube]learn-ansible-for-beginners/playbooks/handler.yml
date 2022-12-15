@@ -1,0 +1,38 @@
+- hosts: web
+  vars:
+   mysql_root_password: 1234
+
+  remote_user: root
+  become: true
+
+  tasks:
+  - name: Install apache httpd 
+    apt: 
+     name: apache2
+     state: present
+    notify: 
+      - Restart Apache
+  - name: Install nano  
+    apt: 
+     name: nano
+     state: present
+    notify: 
+      - Restart Apache
+  - name: Install MYSQL 
+    apt: name= {{ item }} update_cache=yes cache_valid_time=3600 state=present
+    with_items: 
+       - python-mysqldb
+       - mysql-server
+    notify: 
+      - Restart Apache
+
+  handlers:
+    - name: Restart Apache
+      service: 
+        name: apache2
+        state: fixed
+
+  # - name: Remove Apache
+  #   apt: 
+  #     name: apache2
+  #     state: absent
