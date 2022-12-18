@@ -1,0 +1,13 @@
+---
+- hosts: aws-ec2
+  remote_user: root
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Curl AWS
+      shell:
+        cmd: curl http://169.254.169.254/latest/meta-data/public-ipv4
+        # cmd: curl http://localhost
+      register: test_var
+
+    - debug: var=test_var.stdout_lines

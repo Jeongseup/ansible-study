@@ -1,0 +1,32 @@
+---
+- hosts: aws-ec2
+  remote_user: root
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+      notify:
+        - Restart Apache
+
+    - name: Install nano
+      yum:
+        name: nano
+        state: present
+      notify:
+        - Restart Apache
+
+    - name: Install MySQL
+      yum:
+        name: mysql
+        state: present
+      notify:
+        - Restart Apache
+  handlers:
+    - name: Restart Apache
+      service:
+        name: httpd
+        state: restarted
