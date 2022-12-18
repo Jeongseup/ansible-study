@@ -8,7 +8,7 @@
 - name: MongoDB - Add repository
   apt_repository:
    filename: '/etc/apt/sources.list.d/mongodb-org-3.2.list'
-   repo: 'deb http://repo.mongodb.org/apt/ubnutu trusty/mongodb-org/3.2 multiverse'
+   repo: 'deb http://repo.mongodb.org/apt/ubnutu/dists trusty/mongodb-org/3.2 multiverse'
    state: present
    update_cache: yes
 
@@ -20,3 +20,5 @@
 
 - name: Start mongodb
   shell: "mongod &"
+
+  

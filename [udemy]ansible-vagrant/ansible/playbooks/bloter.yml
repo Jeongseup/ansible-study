@@ -1,0 +1,11 @@
+---
+- name: Ansible Vim
+  hosts: localhost
+
+  tasks:
+    - name: Add ansible hosts
+      blockinfile: 
+       path: ../test.ini
+       block: |
+        [bloter]
+        192.168.1.13

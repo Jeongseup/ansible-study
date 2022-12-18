@@ -1,0 +1,24 @@
+---
+#--------Ubuntu--------#
+- remote_user: root
+  hosts: test
+  become: true
+
+  tasks:
+    - name: fail install nginx
+      yum: name=nginx state=present
+        
+    - name: install nginx web server
+      apt: 
+        pkg: nginx
+        state: present
+        update_cache: yes
+      
+    - name: upload default index.html for web server
+      copy: src=../index.html dest=/usr/share/nginx/html/ mode=0644 #보안을 위함
+
+    - name: start nginx web server
+      service: 
+        name: nginx
+        state: started
+ 
