@@ -1,0 +1,29 @@
+---
+- hosts: aws-ec2
+  remote_user: root
+  gather_facts: false
+  become: yes
+  vars:
+    packages:
+      - httpd
+      - nano
+      - mysql
+  tasks:
+  - name: Check Loop Item
+    debug:
+      var: item 
+    loop: "{{ packages }}"
+  
+  - name: Install Software
+    yum:
+      name: "{{ item }}" 
+      state: present
+    loop: "{{ packages }}"
+
+  - name: Remove Software
+    yum:
+      name:
+        - httpd
+        - nano
+        - mysql
+      state: absent

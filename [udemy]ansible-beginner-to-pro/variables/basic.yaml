@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    basic_var: My First Variable
+  tasks:
+  - name: Display Value
+    debug:
+      msg: "{{ basic_var }}"

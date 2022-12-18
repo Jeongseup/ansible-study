@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    courses:
+      - ansible
+      - terraform
+      - docker
+    docker: My Docker Value
+
+  tasks:
+  - name: Display Value
+    debug: 
+      msg: "vars courses are {{ courses }}"
+      # var: "{{ courses [2] }}" 
+      # msg:
+      #   - "{{ courses [0] }}" 
+      #   - "{{ courses [0] }}" 
+      #   - "{{ courses [0] }}" 
+          

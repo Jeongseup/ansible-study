@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  vars_files:
+    - ./vars.yaml
+
+  gather_facts: false
+  tasks:
+  - name: Display 1st Value
+    debug: 
+      msg: "var1 is  {{ http_port }}"
+  - name: Display 2nd Value
+    debug: 
+      msg: "{{ server_name }}"
+          
