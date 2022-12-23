@@ -1,0 +1,4 @@
+---
+# vars file for vardemo
+# these value in here are going to be override at default values
+basic_var: My MAIN Variable

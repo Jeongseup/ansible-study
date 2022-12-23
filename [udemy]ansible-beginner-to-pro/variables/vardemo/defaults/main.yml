@@ -1,0 +1,4 @@
+---
+# defaults file for vardemo
+# variables for fallback option is default variable
+basic_var: My First Variable
