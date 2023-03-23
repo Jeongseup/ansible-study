@@ -1,0 +1,22 @@
+---
+- name: "Configure_SNMP_Contact"
+  hosts: "ubuntu"
+  gather_facts: false
+  connection: local
+
+  vars:
+    cli:
+      host: "{{ inventory_hostname }}"
+      username: "{{ username }} "
+      transport: cli
+
+  tasks:
+    - name: "Configure snmp contact"
+      cisco.nxos.nxos_snmp_contact:
+        contact: TEST_1
+        state: present
+      register: output
+
+    - name: "Show output"
+      ansible.builtin.debug:
+        var: output

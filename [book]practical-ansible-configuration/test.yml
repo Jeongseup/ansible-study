@@ -1,0 +1,10 @@
+---
+- name: "Ping moduel demo"
+  gather_facts: false
+  hosts: all
+  
+  tasks:
+    - name: Run our original Ansible command
+      ansible.builtin.debug: msg="Ansible is fun"
+    - name: We also need to test connectivity
+      ansible.builtin.ping:
